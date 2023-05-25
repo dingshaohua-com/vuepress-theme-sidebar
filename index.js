@@ -1,6 +1,6 @@
 import { getDirname, path, fs } from "@vuepress/utils";
 import { defaultTheme } from "@vuepress/theme-default";
-import genSider from "./helper/gen-side";
+import genSider from "./helper/gen-side/index.js";
 const __dirname = getDirname(import.meta.url);
 
 // 创建一个基于默认主题的page文件 并作出修改 是为在右侧放入页面内部导航部分
