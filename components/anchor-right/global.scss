@@ -1,0 +1,26 @@
+@media (max-width: 1000px) {
+  // .sidebar-items {
+  //   .sidebar-item-children {
+  //     .sidebar-item-children {
+  //       display: block;
+  //     }
+  //   }
+  // }
+
+  .page {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  // .sidebar-items {
+  //   .sidebar-item-children {
+  //     .sidebar-item-children {
+  //       display: none;
+  //     }
+  //   }
+  // }
+  .page {
+    padding-right: 20rem;
+  }
+}
