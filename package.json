@@ -5,5 +5,14 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dingshaohua-cn/vuepress-theme-sidebar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dingshaohua-cn/vuepress-theme-sidebar/issues"
+  },
+  "homepage": "https://github.com/dingshaohua-cn/vuepress-theme-sidebar#readme"
 }
