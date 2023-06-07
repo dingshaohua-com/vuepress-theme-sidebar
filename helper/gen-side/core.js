@@ -1,4 +1,7 @@
 import { getDirInfo, computeParams, genDirMenu } from "./helper.js";
+import os from 'os';
+
+const isWindows = os.type() === 'Windows_NT';
 
 export default (rootUrl) => {
   const sidebar = [];
@@ -13,13 +16,13 @@ export default (rootUrl) => {
       const dirMenu = isDir ? genDirMenu(absolutePath) : null;
       if (isRootFile) {
         // 如果只有一层 则直接赋值sidebar
-        sidebar.push(isDir ? dirMenu : relativePath.replaceAll("\\", "/"));
+        sidebar.push(isDir ? dirMenu : (isWindows?relativePath.replaceAll("\\", "/"):relativePath));
       } else {
         // 如果文件或文件夹的路径有很多层 则通过reduce来赋值到sidebar对应的位置
         relativePathArr.reduce((prev, cur, index, arr) => {
           // 最后一层的时候再做赋值sidebar操作
           if (index === arr.length - 1) {
-            prev.children.push(isDir ? dirMenu : relativePath.replaceAll("\\", "/"));
+            prev.children.push(isDir ? dirMenu :(isWindows?relativePath.replaceAll("\\", "/"):relativePath));
           } else {
             // 否则继续递归到最后一层
             const prevItem = index === 0 ? prev : prev.children;
