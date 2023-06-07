@@ -16,16 +16,28 @@ fs.writeFileSync(newPageFile, soucePageFileContent);
 const sidebar = genSider();
 
 // 最终导出
+// 最终导出
 export default (options) => {
+  // 动态创建右侧菜单目录
+  const sidebar = genSider();
   const handel = (app) => {
-    return {
+    const defaultThemeCfg = { ...options, sidebar, sidebarDepth: [0] };
+    if (options?.sidebarType === "right") {
+      delete defaultThemeCfg.sidebar;
+    } else if (options?.sidebarType === "left") {
+      delete defaultThemeCfg.sidebarDepth;
+    }
+
+    const config = {
       name: "vuepress-theme-sidebar",
-      extends: defaultTheme({ ...options, sidebar, sidebarDepth: [0] }), // sidebarDepth设置为0，页面内部的导航全部挪动的右侧
+      extends: defaultTheme(defaultThemeCfg), // sidebarDepth设置为0，页面内部的导航全部挪动的右侧
       alias: {
         // 覆盖组件别名
         "@theme/Page.vue": newPageFile,
-      }
+      },
     };
+    options?.sidebarType === "left" && delete config.alias;
+    return config;
   };
   return handel;
 };
