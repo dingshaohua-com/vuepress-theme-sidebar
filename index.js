@@ -22,17 +22,21 @@ fs.writeFileSync(newSidebarItemFile, sidebarItemFileContent);
 
 
 // 最终导出
-export default (options) => {
-  // 动态创建右侧菜单目录
-  const sidebar = genSider();
+export default (options, ctx) => {
+
   const handel = (app) => {
+    const sourceDir = app.dir.source();
+    const sourceDirArr = sourceDir.split('/');
+    const sidebar = genSider({
+      sourceDir: sourceDirArr[sourceDirArr.length-1],
+      // sidebarType: options?.sidebarType
+    });// 动态创建右侧菜单目录
     const defaultThemeCfg = { ...options, sidebar};
     if (options?.sidebarType === "right") {
       delete defaultThemeCfg.sidebar;
     } else if (options?.sidebarType === "left") {
       delete defaultThemeCfg.sidebarDepth;
     }
-
     const config = {
       name: "vuepress-theme-sidebar",
       extends: defaultTheme(defaultThemeCfg), // sidebarDepth设置为0，页面内部的导航全部挪动的右侧

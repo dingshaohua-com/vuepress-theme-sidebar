@@ -11,10 +11,15 @@ const baseStr = isWindows?"\\":"/";
  * @param {*} url
  * @returns
  */
-export const getDirInfo = (url) => {
+export const getDirInfo = (url, params) => {
   let dirInfo = fs.readdirSync(url);
   // 根目录要忽略.vuepress和README.md文件
-  const isRootUrl = isWindows?/.*\\docs$/.test(url):/.*\/docs$/.test(url);
+  const regexString1= `.*\\\\${params.sourceDir}$`;
+  const regexString2 =   `.*\\/${params.sourceDir}$`;
+  const regex = new RegExp(isWindows?regexString1:regexString2);
+  // const isRootUrl = isWindows?/.*\\docs$/.test(url):/.*\/docs$/.test(url);
+  const isRootUrl = regex.test(url);
+  console.log(url, isRootUrl);
   if (isRootUrl) {
     dirInfo = dirInfo.filter((it) => it !== ".vuepress" && it !== "README.md");
   }
@@ -34,9 +39,9 @@ export const splitUrl = (url) => {
 /**
  * 生成目录的core.js一些必要的参数
  */
-export const computeParams = (url, item) => {
+export const computeParams = (url, item, params) => {
   const absolutePath = path.join(url, item); // 文件或文件夹的绝对路径
-  const relativePath = absolutePath.replace(path.resolve("./docs"), ""); // 文件或文件夹的相对路径
+  const relativePath = absolutePath.replace(path.resolve(`./${params.sourceDir}/`), ""); // 文件或文件夹的相对路径
   const relativePathArr = splitUrl(relativePath); // 文件或文件夹的相对路径 转换为数组
   const isDir = fs.statSync(absolutePath).isDirectory(); // 判断是文件夹或文件
   return { absolutePath, relativePath, relativePathArr, isDir };
