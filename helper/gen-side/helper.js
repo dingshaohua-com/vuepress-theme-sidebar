@@ -19,7 +19,6 @@ export const getDirInfo = (url, params) => {
   const regex = new RegExp(isWindows?regexString1:regexString2);
   // const isRootUrl = isWindows?/.*\\docs$/.test(url):/.*\/docs$/.test(url);
   const isRootUrl = regex.test(url);
-  console.log(url, isRootUrl);
   if (isRootUrl) {
     dirInfo = dirInfo.filter((it) => it !== ".vuepress" && it !== "README.md");
   }
