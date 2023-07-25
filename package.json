@@ -1,12 +1,12 @@
 {
   "name": "example",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "vuepress dev src",
+    "docs:build": "vuepress build src"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,7 @@
     "@vuepress/client": "^2.0.0-beta.66",
     "vue": "^3.3.4",
     "vuepress": "^2.0.0-beta.66",
-    "vuepress-theme-sidebar": "^0.0.7"
+    "vuepress-theme-sidebar": "^0.0.8"
   },
   "dependencies": {}
 }
