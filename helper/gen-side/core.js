@@ -3,15 +3,15 @@ import os from 'os';
 
 const isWindows = os.type() === 'Windows_NT';
 
-export default (rootUrl) => {
+export default (rootUrl, params) => {
   const sidebar = [];
   const readDir = (url) => {
     // 获取传入进来的目录结构
-    const dirInfo = getDirInfo(url);
+    const dirInfo = getDirInfo(url, params);
     // 遍历目录
     dirInfo.map((item) => {
       // 一些下边使用基本参数
-      const { absolutePath, relativePath, relativePathArr, isDir } = computeParams(url, item);
+      const { absolutePath, relativePath, relativePathArr, isDir } = computeParams(url, item, params);
       const isRootFile = relativePathArr.length === 1; // 是否根路径下的文件或文件夹
       const dirMenu = isDir ? genDirMenu(absolutePath) : null;
       if (isRootFile) {
