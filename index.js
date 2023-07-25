@@ -1,27 +1,32 @@
 import { getDirname, path, fs } from "@vuepress/utils";
 import { defaultTheme } from "@vuepress/theme-default";
 import genSider from "./helper/gen-side/index.js";
-const __dirname = getDirname(import.meta.url);
+
 
 // 创建一个基于默认主题的page文件 并作出修改 是为在右侧放入页面内部导航部分
-// （当然如果你觉得node操作文件得读写查有点笨拙 也可以使用shelljs）
+const __dirname = getDirname(import.meta.url);
 const newPageFile = path.resolve(__dirname, "./components/Page.vue");
-const soucePageFile = "node_modules/@vuepress/theme-default/lib/client/components/Page.vue";
-let soucePageFileContent = fs.readFileSync(soucePageFile, "utf8");
-soucePageFileContent = soucePageFileContent.replace(`<script setup lang="ts">`, `<script setup lang="ts">\nimport AnchorRight from './anchor-right/index.vue'`);
-soucePageFileContent = soucePageFileContent.replace(`<div class="theme-default-content">`, `<div class="theme-default-content">\n<anchor-right/>`);
-fs.writeFileSync(newPageFile, soucePageFileContent);
+const pageFile = path.resolve('node_modules/@vuepress/theme-default/lib/client/components/Page.vue');
+let pageFileContent = fs.readFileSync(pageFile, "utf8");
+pageFileContent = pageFileContent.replace(`<script setup lang="ts">`, `<script setup lang="ts">\nimport AnchorRight from './anchor-right/index.vue'`);
+pageFileContent = pageFileContent.replace(`<div class="theme-default-content">`, `<div class="theme-default-content">\n<anchor-right/>`);
+fs.writeFileSync(newPageFile, pageFileContent);
 
-// 动态创建右侧菜单目录
-const sidebar = genSider();
+const newSidebarItemFile = path.resolve(__dirname, "./components/SidebarItem.vue");
+const sidebarItemFile = "node_modules/@vuepress/theme-default/lib/client/components/SidebarItem.vue";
+let sidebarItemFileContent = fs.readFileSync(sidebarItemFile, "utf8");
+sidebarItemFileContent = sidebarItemFileContent.replace(`'../../shared/index.js'`, `'@vuepress/theme-default/lib/shared/index.js'`);
+sidebarItemFileContent = sidebarItemFileContent.replace(`'../utils/index.js'`, `'@vuepress/theme-default/lib/client/utils/index.js'`);
+sidebarItemFileContent = sidebarItemFileContent.replace(`<SidebarItem`, `<SidebarItem \n v-show="depth<2"`);
+fs.writeFileSync(newSidebarItemFile, sidebarItemFileContent);
 
-// 最终导出
+
 // 最终导出
 export default (options) => {
   // 动态创建右侧菜单目录
   const sidebar = genSider();
   const handel = (app) => {
-    const defaultThemeCfg = { ...options, sidebar, sidebarDepth: [0] };
+    const defaultThemeCfg = { ...options, sidebar};
     if (options?.sidebarType === "right") {
       delete defaultThemeCfg.sidebar;
     } else if (options?.sidebarType === "left") {
@@ -34,6 +39,7 @@ export default (options) => {
       alias: {
         // 覆盖组件别名
         "@theme/Page.vue": newPageFile,
+        "@theme/SidebarItem.vue": newSidebarItemFile,
       },
     };
     options?.sidebarType === "left" && delete config.alias;

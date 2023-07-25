@@ -9,10 +9,6 @@
   }
 }
 
-:root {
-  scroll-behavior: smooth;
-}
-
 .anchor-right {
   position: sticky;
   top: calc(var(--navbar-height) + 4rem);

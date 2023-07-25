@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-sidebar",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "keywords": [],
@@ -14,5 +14,5 @@
   "bugs": {
     "url": "https://github.com/dingshaohua-cn/vuepress-theme-sidebar/issues"
   },
-  "homepage": "https://github.com/dingshaohua-cn/vuepress-theme-sidebar#readme"
+  "homepage": "https://github.com/dingshaohua-cn/vuepress-theme-sidebar#readme",
 }
