@@ -28,10 +28,10 @@ export default (options, ctx) => {
     const sourceDir = app.dir.source();
     const sourceDirArr = sourceDir.split('/');
     const sidebar = genSider({
-      sourceDir: sourceDirArr[sourceDirArr.length-1],
-      // sidebarType: options?.sidebarType
-    });// 动态创建右侧菜单目录
-    const defaultThemeCfg = { ...options, sidebar};
+      sourceDir: sourceDirArr[sourceDirArr.length - 1],
+    });
+    // 动态创建右侧菜单目录
+    const defaultThemeCfg = { ...options, sidebar };
     if (options?.sidebarType === "right") {
       delete defaultThemeCfg.sidebar;
     } else if (options?.sidebarType === "left") {
