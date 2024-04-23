@@ -5,7 +5,7 @@
 
 ![](https://img.shields.io/badge/vuepress_theme_sidebar-v0.0.1-brightgreen)
 <br> <br>
-[点击这里查看预览](https://dingshaohua-cn.github.io/vuepress-theme-sidebar)    
+[点击这里查看预览](https://dingshaohua-com.github.io/vuepress-theme-sidebar)    
 [这里切换并查看预览分支的源码](https://github.com/dingshaohua-cn/vuepress-theme-sidebar/tree/example)  
 vuepress-theme-sidebar 一款用于vuepress2.x的自动生成导航栏的主题。     
 
