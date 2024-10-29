@@ -1,7 +1,9 @@
-### 推荐使用vitePress，自带右侧小导航吗，比vuepress更好用
+
 
 <div align="center"> 
 <h1>vuepress-theme-sidebar</h1>
+
+[ 推荐使用[vitePress](https://vitepress.dev/zh)，自带右侧小导航吗，比vuepress更好用 ]
 
 <!-- 简体中文 | [English](./README-en.md) -->
 
